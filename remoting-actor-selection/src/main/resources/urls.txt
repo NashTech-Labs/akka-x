@@ -1,0 +1,5 @@
+http://localhost:8081/friends/country/1/userid/girish1
+http://localhost:8081/friends/country/2/userid/girish2
+http://localhost:8081/friends/country/3/userid/girish3
+http://localhost:8081/friends/country/4/userid/girish4
+http://localhost:8081/friends/country/5/userid/girish5
