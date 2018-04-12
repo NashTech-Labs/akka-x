@@ -15,7 +15,7 @@ class WorkerCoordinator extends Actor with Logging{
 
   def receive = {
     case msg: Query =>
-      println(s"DeciderGuardian: ${self.path}, got message: ${msg}")
+      info(s"DeciderGuardian: ${self.path}, got message: ${msg}")
       val name = s"Country${msg.country}"
       val actor = context.child(name) getOrElse context.actorOf(Props[QueryProcessorActor], name)
       actor forward msg

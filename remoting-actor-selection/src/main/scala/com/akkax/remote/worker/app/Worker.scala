@@ -1,4 +1,4 @@
-package com.akkax.remote.worker
+package com.akkax.remote.worker.app
 
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.routing.RoundRobinPool
@@ -14,7 +14,7 @@ object Worker extends App with Logging{
   val app = config.getString("application.name")
   implicit val system = ActorSystem(app, config)
 
-  lazy val processor: ActorRef = system
+  val processor: ActorRef = system
     .actorOf(RoundRobinPool(20).props(Props(classOf[WorkerCoordinator])), "processor")
 
   info("Worker is ready to process work..")
