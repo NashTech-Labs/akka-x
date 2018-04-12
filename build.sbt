@@ -18,7 +18,6 @@ lazy val commonUtil = BaseProject("common-util").settings(
   parallelExecution in Test := false
 )
 
-
 lazy val remotingActorSelection = BaseProject("remoting-actor-selection").settings(
   libraryDependencies ++= compileDependencies(akkaHttp.value ++ akka.value ++ akkaRemote.value)
     ++ testDependencies(Nil),

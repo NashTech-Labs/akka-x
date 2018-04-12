@@ -10,7 +10,7 @@ import com.typesafe.config.ConfigFactory
 /**
   * Created by girish on 15/1/18.
   */
-object Master extends Population with Logging{
+object Master extends Population with Logging {
 
   val config = ConfigFactory.load
   val app = config.getString("application.name")
