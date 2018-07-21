@@ -1,13 +1,13 @@
 package com.akkax.remote.master.controller
 
-import akka.actor.{ActorSelection, ActorSystem, PoisonPill, Props}
+import akka.actor.{ActorRef, ActorSelection, ActorSystem, PoisonPill, Props}
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, HttpResponse}
 import akka.http.scaladsl.server.Directives.{complete, get, path, pathPrefix, _}
 import akka.http.scaladsl.server.Route
 import akka.pattern.ask
 import akka.util.Timeout
 import com.akkax.logger.Logging
-import com.akkax.remote.actors.{QueryProcessorActor, Query, Result}
+import com.akkax.remote.actors.{Query, QueryProcessorActor, Result}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -18,7 +18,7 @@ trait Population extends Logging{
 
   implicit val system: ActorSystem
   implicit val timeout = Timeout(5 seconds)
-  val processor: ActorSelection
+  val processor: ActorRef
 
   val route: Route =
     get {
@@ -49,7 +49,6 @@ trait Population extends Logging{
           .mapTo[Result]
           .map { res =>
             localProcessor ! PoisonPill
-            info(s"Responding with: ${res.toString}")
             HttpResponse(entity = HttpEntity(ContentTypes.`text/html(UTF-8)`, res.toString))
           }
     }

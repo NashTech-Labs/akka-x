@@ -1,6 +1,3 @@
-akka-x
-======
-
 ACTOR SELECTION:
 ===============
 
@@ -35,11 +32,10 @@ sbt "project remoting-actor-deployment" "run-main com.akkax.remote.master.app.Ma
 RUN WORKER NODE:
 ---------------
 
-sbt "project remoting-actor-deployment" "run-main com.akkax.remote.worker.app.Worker"
+sbt "project remoting-actor-selection" "run-main com.akkax.remote.worker.app.Worker"
 
 RUN CONCURRENT REQUESTS:
 -----------------------
 
 
 cat remoting-actor-selection/src/main/resources/urls.txt | parallel "ab -n 10 -c 4 {}"
-
