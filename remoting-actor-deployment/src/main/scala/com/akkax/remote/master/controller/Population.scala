@@ -38,6 +38,7 @@ trait Population extends Logging{
     (processor ? Query(countryId, userId))
       .mapTo[Result]
       .map { res =>
+        info(s"Responding with: ${res.toString}")
         HttpResponse(entity = HttpEntity(ContentTypes.`text/html(UTF-8)`, res.toString))
       }.recoverWith {
       //Handling actor not reachable

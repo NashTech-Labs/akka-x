@@ -27,12 +27,12 @@ object Master extends Population with Logging{
 
 
 
-  //Akka remoting actor selection with router from config
+  //Akka remoting actor deployment with router from config
   lazy val processor: ActorRef = system.actorOf(FromConfig.props(Props[QueryProcessorActor]), "processors")
 
   //Actor deployment with code
-  val address = Address("akka.tcp", "population", "localhost", 2553)
-//  val ref = system.actorOf(Props[QueryProcessorActor].withDeploy(Deploy(scope = RemoteScope(address))))
+  //val address = Address("akka.tcp", "population", "localhost", 2553)
+  //val ref = system.actorOf(Props[QueryProcessorActor].withDeploy(Deploy(scope = RemoteScope(address))))
 
   def main(args: Array[String]) {
     implicit val materializer = ActorMaterializer()
